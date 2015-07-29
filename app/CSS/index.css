@@ -1,0 +1,47 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+	-webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;
+	background-image:url(../Images/Background.jpeg);
+	
+	
+}
+
+.app {
+	width:191px;
+	margin:auto;
+}
+	
+h1.title{
+	color:white;
+	text-emphasis:accent;
+	font-size:3em;
+	text-align:center;
+	padding-top:90px;
+}
+
+
+a {
+	padding-left:80px;
+	color:white; 
+}
+
+p {
+	text-align:center;
+	color:white;
+}
+
+h1.ui-title {
+	color:white;
+	text-align:center;
+	font-size:1em;
+	
+}
+
+
+
+	
+	

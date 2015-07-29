@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Quiz</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="YES" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="copyright" content="Copyright 2014 Amanda Brown" />
+<link rel="apple-touch-icon" href="image/loader.png" />
+<link rel="apple-touch-startup-image" href="image/splash.png" />
+
+<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.3.min.css" /> 
+<script src="js/jquery-1.11.1.min.js"></script> 
+<script src="js/jquery.mobile-1.4.3.min.js"></script> 
+<script type="text/javascript" src="modernizr.js"></script>
+<link rel="stylesheet" href="themes/animals.min.css" />
+<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+<style>
+
+h1
+{
+	text-align:center;
+	background-color:#EE0BD7;
+	
+}
+.showanswer
+{
+  position:relative;
+  width:200px;
+  color:white;
+  padding:15px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:10px;
+  margin-bottom:10px;
+  background-color:red;	
+  -webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+  text-align:center;
+}
+#questionContainer {
+	width: 720px;	
+	height: 250px;
+	margin: auto;
+}
+
+.question
+{
+  position:relative;
+  color:black;
+  font-size:1.5em;
+  padding:15px;
+  margin-left:auto;
+  margin-right:auto;
+    margin-top:10px;
+  margin-bottom:10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+   border-radius: 10px;
+   text-align:center;
+}
+.answer
+{
+  position:relative;
+  width:200px;
+  color:white;
+  padding:15px;
+  margin-left:auto;
+  margin-right:auto;
+    margin-top:10px;
+  margin-bottom:10px;
+  background-color:orange;	
+  display:none;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+   border-radius: 10px;
+     text-align:center;
+}
+
+.answer img {
+	width: 100px;
+	height:100px;
+}
+.option
+{
+  position:relative;
+  width:200px;
+  color:white;
+  float: left;
+  padding:15px;
+    margin-top:10px;
+  margin-bottom:10px;
+  margin-left:10px;
+  background-color:yellow;	
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+   border-radius: 10px;
+   text-align:center;
+   
+   
+}
+
+.option img {
+	width: 100px;
+	height:100px;	
+}
+.proceed
+{
+  position:relative;
+  width:200px;
+  color:white;
+  padding:15px;
+  margin-left:auto;
+  margin-right:auto;
+    margin-top:10px;
+  margin-bottom:10px;
+  background-color:red;	
+  display:none;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+   border-radius: 10px;
+   text-align:center;
+   
+}
+a.proceed, a.proceed:hover, a.proceed:active, a.proceed:visited { text-decoration:none; color:white;}
+</style>
+<script type="text/javascript">
+function getPath() 
+{
+            var str = location.pathname;
+            var i = str.lastIndexOf('/');
+            return str.substring(0,i+1);
+}
+function showanswer(n)
+{
+   document.getElementById('showanswer' + n).style.display='none';
+   document.getElementById('answer' + n).style.display='block';
+   document.getElementById('proceed' + n).style.display='block';
+}
+		
+function loadXMLDoc(filename)
+{
+if (window.XMLHttpRequest)
+  {
+  xhttp=new XMLHttpRequest();
+  }
+else // code for IE5 and IE6
+  {
+  xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  filename=getPath() + filename;
+xhttp.open("GET",filename,false);
+xhttp.send();
+return xhttp.responseText;
+}
+	</script>
+</head>
+
+<body>
+<!--Start Home Page-->
+
+
+ 
+		<form id="theQuiz" method="post">
+        <script type="text/javascript">
+			parser=new DOMParser();
+		   var xmlDoc=parser.parseFromString(loadXMLDoc("data.xml"),"text/xml");
+		   counter=5;
+		   
+		   x=xmlDoc.getElementsByTagName("task").length;
+		   var items = xmlDoc.getElementsByTagName('task');
+		   for (i=0;i<x;i++)
+           {
+              thisitem= items[i];
+			  document.write('<div data-role="page" id="page' + i + '"><div data-role="header" data-theme="b"><a href="#" data-role="button" data-icon="back" onclick="document.location.href=\'index.html\';">&nbsp;</a><h1>Quiz - Question ' + i + '</h1></div>');
+			  //Start Questions Code
+			  question = thisitem.getElementsByTagName("question")[0].textContent; // W3C
+			  document.write('<div class="question">' + question + '</div>');
+			  document.write('<div id="questionContainer">');
+			  option1 = thisitem.getElementsByTagName("option")[0].textContent; // W3C
+			  document.write('<div class="option"><img src="Images/' + option1 + '" /></div>');
+			  option2 = thisitem.getElementsByTagName("option")[1].textContent; // W3C
+			  document.write('<div class="option"><img src="Images/' + option2 + '"></div>');
+			  option3 = thisitem.getElementsByTagName("option")[2].textContent; // W3C
+			  document.write('<div class="option"><img src="Images/' + option3 + '"></div>');
+			  document.write('</div>');
+			  document.write('<div class="showanswer" onclick="showanswer(' + i + ')" id="showanswer' + i + '">Show Answer</div>');
+              answer = thisitem.getElementsByTagName("answer")[0].textContent; // W3C
+			  document.write('<div class="answer" id="answer' + i + '"><img src="Images/' + answer + '" /></div>');
+			  z=x-1;
+			  if (i==z)
+			  {
+				document.write('<a href="end.html" class="proceed" id="proceed' + i + '" onclick="document.location.href=\'end.html\';">End Game</a>');  
+			  }
+			  else
+			  {
+			  document.write('<a href="#page' + (i+1) + '" class="proceed" id="proceed' + i + '">Proceed</a>');
+			  }
+			  //End Questions Code
+			  document.write('<div data-role="footer"><h1>&copy; Gabrielle Winsor 2015</h1></div></div> ');
+            }  
+
+		  
+		</script>
+			
+		</form>
+        
+        
+       <!-- <h1 class="ui-title" role="heading" aria-level="1">Quiz - Question 0</h1>
+    </div>
+    
+        <div class="question">Can you find the Puppy?</div>
+        <div id="questionContainer">
+        <div class="option"><img src="Images/goldfish.png"></div>
+        <div class="option"><img src="Images/kitten.jpg"></div>
+        <div class="option"><img src="Images/social-media-puppy.jpg"></div>
+        </div>
+        <div class="showanswer" onclick="showanswer(0)" id="showanswer0">Show Answer</div>
+        <div class="answer" id="answer0"><img src="Images/social-media-puppy.jpg"></div>
+        <a href="#page1" class="proceed ui-link" id="proceed0">Proceed</a>
+    
+    <div data-role="footer" role="contentinfo" class="ui-footer ui-bar-inherit">
+        <h1 class="ui-title" role="heading" aria-level="1">© Gabrielle Winsor 2015</h1>
+    </div>-->
+<!--End Page-->
+<script type="text/javascript">
+   function backKeyDown() 
+   { 
+      document.location('index.html');
+   }
+  
+   
+</script> 
+</body>
+</html>

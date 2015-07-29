@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<all> 
+	<task>	
+		<question>Can you find the Puppy?</question> 
+		<option>goldfish.png </option>
+		<option>kitten.jpg</option>
+		<option>social-media-puppy.jpg</option>
+		<answer>social-media-puppy.jpg</answer>
+	</task>
+	
+	<task>	
+		<question>Can you find the Guinea Pig??</question> 
+		<option>goldfish.png</option>
+		<option>kitten.jpg</option>
+		<option>guineapig.jpg</option>
+		<answer>guineapig.jpg</answer>
+	</task>
+	
+	<task>	
+		<question>Can you find the Elephant?</question> 
+		<option>elephant.jpeg </option>
+		<option>chimp.jpg</option>
+		<option>zebra.jpg </option>
+		<answer>elephant.jpeg</answer>
+	</task>
+	
+	<task>	
+		<question>Can you find the Starfish?</question> 
+		<option>stingray.jpg</option>
+		<option>starfish.jpg </option>
+		<option>penguin.jpg</option>
+		<answer>starfish.jpg</answer>
+	</task>
+	
+	<task>	
+		<question>Can you find the Pig?</question> 
+		<option>duck.jpeg</option>
+		<option>pig.png</option>
+		<option>cow.jpg</option>
+		<answer>pig.png</answer>
+	</task>
+		
